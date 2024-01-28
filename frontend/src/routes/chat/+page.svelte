@@ -2,9 +2,14 @@
   const messages = []
   const friendList = []
   const activeFriendIndex = null
+
+  let userListPosition = false
+  const swapUserPosition = () => {
+    userListPosition = !userListPosition
+  }
 </script>
 
-<main>
+<main style:flex-direction={userListPosition ? 'row' : 'row-reverse'}>
   <section id="userList">
     {#each friendList as friend }
       <button>User to make active</button>
