@@ -67,4 +67,12 @@
     margin-top: auto;
     padding: 1em 3em;
   }
+  .left {
+    align-self: start;
+    background-color: #A53860;
+  }
+  .right {
+    align-self: end;
+    background-color: #541C44;
+  }
 </style>
