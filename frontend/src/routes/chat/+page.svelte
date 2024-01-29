@@ -3,7 +3,7 @@
   const friendList = []
   const activeFriendIndex = null
 
-  let userListPosition = false
+  let userListPosition = true
   const swapUserPosition = () => {
     userListPosition = !userListPosition
   }
@@ -11,6 +11,7 @@
 
 <main style:flex-direction={userListPosition ? 'row' : 'row-reverse'}>
   <section id="userList">
+    <button id="changePosition" on:click={swapUserPosition}>&#8596</button>
     {#each friendList as friend }
       <button>User to make active</button>
     {/each}
