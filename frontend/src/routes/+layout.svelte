@@ -7,8 +7,9 @@
 <style>
   :global(html, body) {
     background-color: #030027;
-    color: #FEE;
+    color: #F2F3D9;
     font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
     height: 100%;
     width: 100%;
     display: flex;
