@@ -23,7 +23,7 @@
   </section>
   <section id="messages">
     {#each messages as message }
-      <p>Message from active friend</p>
+      <p class={message.direction === 'sent' ? 'right' : 'left'}>{message.message}</p>
     {/each}
   </section>
 </main>
