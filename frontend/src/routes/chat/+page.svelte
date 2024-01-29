@@ -67,6 +67,12 @@
     margin-top: auto;
     padding: 1em 3em;
   }
+  #messages > p {
+    width: fit-content;
+    margin: 0;
+    padding: 0.8em 1em;
+    border-radius: 500vw;
+  }
   .left {
     align-self: start;
     background-color: #A53860;
