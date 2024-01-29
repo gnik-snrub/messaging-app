@@ -1,6 +1,6 @@
 <script>
   const messages = []
-  const friendList = []
+  const friendList = [1, 2, 3, 4, 5]
   const activeFriendIndex = null
 
   let userListPosition = true
@@ -13,7 +13,7 @@
   <section id="userList">
     <button id="changePosition" on:click={swapUserPosition}>&#8596</button>
     {#each friendList as friend }
-      <button>User to make active</button>
+      <button class="friend">{friend}</button>
     {/each}
   </section>
   <section id="messages">
@@ -31,7 +31,20 @@
     display: flex;
   }
   #userList {
-    width: 10%;
+    width: 4rem;
+    background-color: #2C0E36;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .friend {
+    border-radius: 50%;
+    width: 80%;
+    height: 0;
+    padding-bottom: 80%;
+    background-color: rgba(255, 255, 255, 0.1);
+    border: none;
+    margin: 0.2em;
   }
   #messages {
     width: 90%;
