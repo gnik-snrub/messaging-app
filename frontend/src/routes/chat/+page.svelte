@@ -55,6 +55,7 @@
     margin: 0.2em;
   }
   #messages {
-    width: 90%;
+    width: 100%;
+    background-color: #030027;
   }
 </style>
