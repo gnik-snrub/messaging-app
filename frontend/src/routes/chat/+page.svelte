@@ -1,5 +1,10 @@
 <script>
-  const messages = []
+  const messages = [
+    {direction: 'receive', message: 'yo, what up homie'},
+    {direction: 'sent', message: 'nm, hbu?'},
+    {direction: 'receive', message: 'just something something test'},
+    {direction: 'sent', message: 'lorem ipsum, amirite?'},
+    {direction: 'receive', message: 'totally, dude'}]
   const friendList = [1, 2, 3, 4, 5]
   const activeFriendIndex = null
 
