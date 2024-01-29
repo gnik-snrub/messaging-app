@@ -37,6 +37,14 @@
     flex-direction: column;
     align-items: center;
   }
+  #changePosition {
+    background-color: rgba(0, 0, 0, 0.2);
+    border: none;
+    color: inherit;
+    width: 100%;
+    padding: 0.5em 0em;
+    margin-bottom: 0.2em;
+  }
   .friend {
     border-radius: 50%;
     width: 80%;
