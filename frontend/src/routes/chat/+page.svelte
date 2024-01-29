@@ -62,5 +62,9 @@
   #messages {
     width: 100%;
     background-color: #030027;
+    display: flex;
+    flex-direction: column;
+    margin-top: auto;
+    padding: 1em 3em;
   }
 </style>
