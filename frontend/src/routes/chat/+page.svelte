@@ -31,8 +31,7 @@
 <style>
   main {
     height: 100%;
-    width: 80%;
-    border: 1px solid white;
+    width: 100%;
     display: flex;
   }
   #userList {
