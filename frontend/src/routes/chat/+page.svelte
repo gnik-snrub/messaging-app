@@ -1,7 +1,7 @@
 <script>
   let messages = []
   const friendList = [1, 2, 3, 4, 5]
-  const activeFriendIndex = null
+  const activeFriendIndex = 1
 
   let userListPosition = true
   const swapUserPosition = () => {
@@ -19,8 +19,12 @@
 <main style:flex-direction={userListPosition ? 'row' : 'row-reverse'}>
   <section id="userList">
     <button id="changePosition" on:click={swapUserPosition}>&#8596</button>
-    {#each friendList as friend }
-      <button class="friend">{friend}</button>
+    {#each friendList as friend, index }
+      {#if index === activeFriendIndex}
+        <button id="activeFriend" class="friend">{friend}</button>
+      {:else}
+        <button class="friend">{friend}</button>
+      {/if}
     {/each}
   </section>
   <section id="messages">
@@ -54,6 +58,9 @@
     width: 100%;
     padding: 0.5em 0em;
     margin-bottom: 0.2em;
+  }
+  #activeFriend {
+    border: 1px solid #F2F3D9;
   }
   .friend {
     border-radius: 50%;
