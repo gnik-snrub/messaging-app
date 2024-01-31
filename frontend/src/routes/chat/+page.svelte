@@ -28,12 +28,12 @@
     {/each}
   </section>
   <ul id="messages">
-    {#each messages as message }
+    {#each messages as message}
       <li class={message.direction === 'sent' ? 'right' : 'left'}>{message.message}</li>
     {/each}
   </ul>
   <form on:submit|preventDefault={sendMessage}>
-    <input bind:value={newMessage} type="text">
+    <input bind:value={newMessage} type="text" autofocus>
     <button type="submit">Send</button>
   </form>
 </main>
