@@ -91,12 +91,17 @@
     border-radius: 500vw;
   }
   .left {
+    text-align: left;
     align-self: start;
     background-color: #A53860;
+    border-bottom-left-radius: 0.2em !important;
   }
   .right {
+    text-align: right;
     align-self: end;
     background-color: #541C44;
+    border-bottom-right-radius: 0.2em !important;
+  }
   form {
     width: 100%;
     height: 3em;
