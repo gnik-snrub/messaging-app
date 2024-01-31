@@ -1,16 +1,18 @@
 <script>
-  const messages = [
-    {direction: 'receive', message: 'yo, what up homie'},
-    {direction: 'sent', message: 'nm, hbu?'},
-    {direction: 'receive', message: 'just something something test'},
-    {direction: 'sent', message: 'lorem ipsum, amirite?'},
-    {direction: 'receive', message: 'totally, dude'}]
+  let messages = []
   const friendList = [1, 2, 3, 4, 5]
   const activeFriendIndex = null
 
   let userListPosition = true
   const swapUserPosition = () => {
     userListPosition = !userListPosition
+  }
+
+  let newMessage = ''
+
+  const sendMessage = async () => {
+    messages = [...messages, {direction: 'sent', message: newMessage, timeStamp: new Date()}].sort((a, b) => b.timeStamp - a.timeStamp)
+    newMessage = ''
   }
 </script>
 
@@ -26,6 +28,10 @@
       <p class={message.direction === 'sent' ? 'right' : 'left'}>{message.message}</p>
     {/each}
   </section>
+  <form on:submit|preventDefault={sendMessage}>
+    <input bind:value={newMessage} type="text">
+    <button type="submit">Send</button>
+  </form>
 </main>
 
 <style>
