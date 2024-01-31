@@ -27,11 +27,11 @@
       {/if}
     {/each}
   </section>
-  <section id="messages">
+  <ul id="messages">
     {#each messages as message }
-      <p class={message.direction === 'sent' ? 'right' : 'left'}>{message.message}</p>
+      <li class={message.direction === 'sent' ? 'right' : 'left'}>{message.message}</li>
     {/each}
-  </section>
+  </ul>
   <form on:submit|preventDefault={sendMessage}>
     <input bind:value={newMessage} type="text">
     <button type="submit">Send</button>
@@ -78,9 +78,11 @@
     flex-direction: column;
     margin-top: auto;
     padding: 1em 3em;
+    list-style-type: none;
   }
-  #messages > p {
-    width: fit-content;
+  #messages > li {
+    width: auto;
+    max-width: 45%;
     margin: 0;
     padding: 0.8em 1em;
     border-radius: 500vw;
