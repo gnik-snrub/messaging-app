@@ -17,7 +17,7 @@
 </script>
 
 <main style:flex-direction={userListPosition ? 'row' : 'row-reverse'}>
-  <section id="userList">
+  <section id="userList" style:left={userListPosition ? '0' : ''} style:right={userListPosition ? '' : '0'}>
     <button id="changePosition" on:click={swapUserPosition}>&#8596</button>
     {#each friendList as friend, index }
       {#if index === activeFriendIndex}
@@ -45,11 +45,14 @@
     display: flex;
   }
   #userList {
-    width: 4rem;
+    position: fixed;
+    height: 100%;
+    width: 4em;
     background-color: #2C0E36;
     display: flex;
     flex-direction: column;
     align-items: center;
+    z-index: 2;
   }
   #changePosition {
     background-color: rgba(0, 0, 0, 0.2);
