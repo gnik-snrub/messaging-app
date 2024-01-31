@@ -15,5 +15,9 @@
     display: flex;
     flex-flow: column;
     align-items: center;
+    overflow: hidden;
+  }
+  :global(::-webkit-scrollbar) {
+    display: none;
   }
 </style>

@@ -43,6 +43,7 @@
     height: 100%;
     width: 100%;
     display: flex;
+    justify-content: center;
   }
   #userList {
     position: fixed;
@@ -58,6 +59,7 @@
     background-color: rgba(0, 0, 0, 0.2);
     border: none;
     color: inherit;
+    outline: none;
     width: 100%;
     padding: 0.5em 0em;
     margin-bottom: 0.2em;
@@ -75,12 +77,15 @@
     margin: 0.2em;
   }
   #messages {
+    overflow: auto;
+    height: fit-content;
     width: 100%;
+    height: auto;
+    margin: 0 12em;
+    padding: 2em 0 6em 0;
     background-color: #030027;
     display: flex;
-    flex-direction: column;
-    margin-top: auto;
-    padding: 1em 3em;
+    flex-direction: column-reverse;
     list-style-type: none;
   }
   #messages > li {
@@ -88,7 +93,9 @@
     max-width: 45%;
     margin: 0;
     padding: 0.8em 1em;
-    border-radius: 500vw;
+    border-radius: 1.8em 2em;
+    word-break: break-word;
+    margin-top: 1em;
   }
   .left {
     text-align: left;
