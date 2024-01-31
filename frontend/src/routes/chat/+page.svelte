@@ -97,5 +97,38 @@
   .right {
     align-self: end;
     background-color: #541C44;
+  form {
+    width: 100%;
+    height: 3em;
+    display: flex;
+    flex-direction: row;
+    padding: 0.75em 0;
+    margin: 0.75em 0 0 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    background-color: #030027;
+  }
+  form > input {
+    background-color: rgba(255, 255, 255, 0.1);
+    border: none;
+    width: 100%;
+    margin-right: 2em;
+    margin-left: 6em;
+    color: inherit;
+    outline: none;
+    font-size: 1em;
+    border-radius: 1em;
+    padding: 1em;
+  }
+  form > button {
+    height: 4em;
+    width: 4em;
+    border-radius: 2em;
+    margin-right: 6em;
+    border: none;
+    background-color: #2C0E36;
+    color: inherit;
   }
 </style>
