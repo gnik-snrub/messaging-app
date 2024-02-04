@@ -161,4 +161,26 @@
     background-color: #2C0E36;
     color: inherit;
   }
+  @media screen and (max-width: 450px) {
+    #userList {
+      z-index: 0;
+      padding-top: 1em;
+    }
+    #changePosition {
+      display: none;
+    }
+    form > input {
+      margin-left: 1em;
+    }
+    form > button {
+      margin-right: 1em;
+    }
+    #messages {
+      margin-right: 1em;
+      margin-left: 6em
+    }
+    #messages > li {
+      max-width: 65%;
+    }
+  }
 </style>
