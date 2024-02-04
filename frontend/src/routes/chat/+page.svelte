@@ -36,11 +36,7 @@
   <section id="userList" style:left={userListPosition ? '0' : ''} style:right={userListPosition ? '' : '0'}>
     <button id="changePosition" on:click={swapUserPosition}>&#8596</button>
     {#each friendList as friend, index }
-      {#if index === activeFriendIndex}
-        <button id="activeFriend" class="friend">{friend.name}</button>
-      {:else}
-        <button class="friend" on:click={() => {changeFriend(index)}}>{friend.name}</button>
-      {/if}
+      <button id={index === activeFriendIndex ? 'activeFriend' : ''} on:click={() => {changeFriend(index)}} class="friend">{friend.name}</button>
     {/each}
   </section>
   <ul id="messages">
