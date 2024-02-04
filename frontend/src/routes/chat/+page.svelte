@@ -11,7 +11,9 @@
   let newMessage = ''
 
   const sendMessage = async () => {
-    messages = [...messages, {direction: 'sent', message: newMessage, timeStamp: new Date()}].sort((a, b) => b.timeStamp - a.timeStamp)
+    if (newMessage) {
+      messages = [...messages, {direction: 'sent', message: newMessage, timeStamp: new Date()}].sort((a, b) => b.timeStamp - a.timeStamp)
+    }
     newMessage = ''
   }
 </script>
