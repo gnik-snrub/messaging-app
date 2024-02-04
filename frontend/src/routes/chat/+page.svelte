@@ -36,7 +36,7 @@
   </ul>
   <form on:submit|preventDefault={sendMessage}>
     <input bind:value={newMessage} type="text" autofocus>
-    <button type="submit">Send</button>
+    <button type="submit">&#10148</button>
   </form>
 </main>
 
@@ -137,8 +137,9 @@
     padding: 1em;
   }
   form > button {
-    height: 4em;
-    width: 4em;
+    height: 100%;
+    aspect-ratio: 1 / 1;
+    padding: 0;
     border-radius: 2em;
     margin-right: 6em;
     border: none;
