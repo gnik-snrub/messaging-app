@@ -85,11 +85,12 @@
   }
   .friend {
     border-radius: 50%;
-    width: 80%;
-    height: 0;
-    padding-bottom: 80%;
+    width: 4em;
+    height: 4em;
     background-color: rgba(255, 255, 255, 0.1);
+    color: inherit;
     border: none;
+    border: 1px solid transparent;
     margin: 0.2em;
   }
   #messages {
