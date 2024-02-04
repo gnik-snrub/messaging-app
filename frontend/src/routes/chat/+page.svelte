@@ -1,7 +1,21 @@
 <script>
   let messages = []
-  const friendList = [1, 2, 3, 4, 5]
-  const activeFriendIndex = 1
+  const friendList = [{name: 'john'}, {name: 'jim'}, {name: 'joe'}, {name: 'jose'}, {name: 'joseph'}]
+  let activeFriendIndex = 0
+
+  $: if (activeFriendIndex !== undefined) fetchMessages()
+
+  const fetchMessages = async () => {
+    /*
+    const response = await fetch()
+    const data = await response.json()
+    messages = data.messages
+    */
+  }
+
+  const changeFriend = async (newFriend) => {
+    activeFriendIndex = newFriend
+  }
 
   let userListPosition = true
   const swapUserPosition = () => {
@@ -23,9 +37,9 @@
     <button id="changePosition" on:click={swapUserPosition}>&#8596</button>
     {#each friendList as friend, index }
       {#if index === activeFriendIndex}
-        <button id="activeFriend" class="friend">{friend}</button>
+        <button id="activeFriend" class="friend">{friend.name}</button>
       {:else}
-        <button class="friend">{friend}</button>
+        <button class="friend" on:click={() => {changeFriend(index)}}>{friend.name}</button>
       {/if}
     {/each}
   </section>
