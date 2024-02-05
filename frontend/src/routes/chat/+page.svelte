@@ -46,6 +46,7 @@
               on:click={() => {changeFriend(index)}}
               class="friend"
               style:background-color={friend.favoriteColor}
+              data-name={friend.name}>
         {friend.name.slice(0, 1).toUpperCase()}
       </button>
     {/each}
@@ -100,6 +101,28 @@
     border: none;
     border: 1px solid transparent;
     margin: 0.2em;
+  }
+  .friend:hover::after {
+    left: 80%;
+    translate: 0 -15%;
+    height: 1em;
+    font-size: 0.8em;
+    width: max-content;
+    text-align: right;
+    content: attr(data-name);
+    position: absolute;
+    padding: 0.5em;
+    padding-left: 1em;
+    background-color: darkblue;
+    border-radius: 50vw 5em 5em 50vw;
+    border: 2px solid white;
+    opacity: 0;
+    animation: fadeIn 300ms ease-in forwards;
+  }
+  @keyframes fadeIn {
+    to {
+      opacity: 1;
+    }
   }
   #messages {
     overflow: auto;
