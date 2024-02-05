@@ -1,6 +1,12 @@
 <script>
   let messages = []
-  const friendList = [{name: 'john'}, {name: 'jim'}, {name: 'joe'}, {name: 'jose'}, {name: 'joseph'}]
+  const friendList = [{name: 'john', favoriteColor: '#f00'},
+    {name: 'jim', favoriteColor: '#b04'},
+    {name: 'joe', favoriteColor: '#90b'},
+    {name: 'jose', favoriteColor: '#50b'},
+    {name: 'julian the jreat', favoriteColor: '#20c'},
+    {name: 'joseph', favoriteColor: '#00f'}
+  ]
   let activeFriendIndex = 0
 
   $: if (activeFriendIndex !== undefined) fetchMessages()
@@ -36,7 +42,12 @@
   <section id="userList" style:left={userListPosition ? '0' : ''} style:right={userListPosition ? '' : '0'}>
     <button id="changePosition" on:click={swapUserPosition}>&#8596</button>
     {#each friendList as friend, index }
-      <button id={index === activeFriendIndex ? 'activeFriend' : ''} on:click={() => {changeFriend(index)}} class="friend">{friend.name}</button>
+      <button id={index === activeFriendIndex ? 'activeFriend' : ''}
+              on:click={() => {changeFriend(index)}}
+              class="friend"
+              style:background-color={friend.favoriteColor}
+        {friend.name.slice(0, 1).toUpperCase()}
+      </button>
     {/each}
   </section>
   <ul id="messages">
@@ -81,10 +92,11 @@
   }
   .friend {
     border-radius: 50%;
-    width: 4em;
-    height: 4em;
+    width: 2em;
+    height: 2em;
     background-color: rgba(255, 255, 255, 0.1);
     color: inherit;
+    font-size: 1.5em;
     border: none;
     border: 1px solid transparent;
     margin: 0.2em;
