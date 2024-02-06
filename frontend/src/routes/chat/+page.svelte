@@ -102,7 +102,8 @@
     border: 1px solid transparent;
     margin: 0.2em;
   }
-  .friend:hover::after {
+  .friend:hover::after,
+  .friend:focus::after {
     left: 110%;
     translate: 0 -15%;
     height: 1em;
@@ -118,7 +119,8 @@
     opacity: 0;
     animation: fadeIn 300ms ease-in forwards;
   }
-  .friend:hover::before {
+  .friend:hover::before,
+  .friend:focus::before {
     left: 86%;
     height: 0.43em;
     width: 0.43em;
