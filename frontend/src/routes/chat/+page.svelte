@@ -103,21 +103,36 @@
     margin: 0.2em;
   }
   .friend:hover::after {
-    left: 80%;
+    left: 110%;
     translate: 0 -15%;
     height: 1em;
     font-size: 0.8em;
     width: max-content;
-    text-align: right;
     content: attr(data-name);
     position: absolute;
     padding: 0.5em;
-    padding-left: 1em;
-    background-color: darkblue;
-    border-radius: 50vw 5em 5em 50vw;
-    border: 2px solid white;
+    background-color: #541C44;
+    border: 2px solid #F2F3D9;
+    border-left: 0;
+    border-radius: 0 0.6em 0.6em 0;
     opacity: 0;
     animation: fadeIn 300ms ease-in forwards;
+  }
+  .friend:hover::before {
+    left: 86%;
+    height: 0.43em;
+    width: 0.43em;
+    font-size: 0.8em;
+    content: '';
+    position: absolute;
+    padding: 0.5em;
+    background-color: #541C44;
+    border: 2px solid #F2F3D9;
+    border-top: 0;
+    border-right: 0;
+    opacity: 0;
+    transform: rotate(45deg);
+    animation: fadeIn 350ms ease-in forwards;
   }
   @keyframes fadeIn {
     to {
