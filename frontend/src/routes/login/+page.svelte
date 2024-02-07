@@ -1,4 +1,11 @@
+<script>
 
+  let loginUsername, loginPassword = null
+
+  const login = async () => {
+    console.log(loginUsername, loginPassword)
+  }
+</script>
 <h2>Log In</h2>
 
 
