@@ -6,10 +6,28 @@
   const login = async () => {
     console.log(loginUsername, loginPassword)
   }
+
+  let signupUsername, signupPassword, favoriteColor = null
+
+  const signup = async () => {
+    console.log(signupUsername, signupPassword, favoriteColor)
+  }
 </script>
 
 {#if needsToSignUp}
 <h2>Sign up</h2>
+
+<button on:click={() => {needsToSignUp = !needsToSignUp}}>Log in</button>
+  
+<form on:submit={signup}>
+  <label for="username">Username: </label>
+  <input type="text" name="username" id="username" bind:value={signupUsername}>
+  <label for="password">Password: </label>
+  <input type="text" name="password" id="password" bind:value={signupPassword}>
+  <label for="favoriteColor">Favorite Color: </label>
+  <input type="color" bind:value={favoriteColor}>
+  <button type="submit">Login</button>
+</form>
 {:else}
 <h2>Log In</h2>
 
