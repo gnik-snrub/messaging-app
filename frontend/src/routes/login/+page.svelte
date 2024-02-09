@@ -7,7 +7,8 @@
     console.log(loginUsername, loginPassword)
   }
 
-  let signupUsername, signupPassword, favoriteColor = null
+  let signupUsername, signupPassword = null
+  let favoriteColor = '#A000CC'
 
   const signup = async () => {
     console.log(signupUsername, signupPassword, favoriteColor)
@@ -21,11 +22,11 @@
   <button on:click={() => {needsToSignUp = !needsToSignUp}}>Let me log in</button>
     
   <form on:submit={signup}>
-    <label for="username">Username: </label>
+    <label for="username">Username:</label>
     <input type="text" name="username" id="username" bind:value={signupUsername}>
-    <label for="password">Password: </label>
+    <label for="password">Password:</label>
     <input type="password" name="password" id="password" bind:value={signupPassword}>
-    <label for="favoriteColor">Favorite Color: </label>
+    <label for="favoriteColor">Favorite Color:</label>
     <input type="color" bind:value={favoriteColor}>
     <button type="submit">Sign up</button>
   </form>
@@ -35,9 +36,9 @@
   <button on:click={() => {needsToSignUp = !needsToSignUp}}>I need to sign up</button>
 
   <form on:submit={login}>
-    <label for="username">Username: </label>
+    <label for="username">Username:</label>
     <input type="text" name="username" id="username" bind:value={loginUsername}>
-    <label for="password">Password: </label>
+    <label for="password">Password:</label>
     <input type="password" name="password" id="password" bind:value={loginPassword}>
     <button type="submit">Login</button>
   </form>
