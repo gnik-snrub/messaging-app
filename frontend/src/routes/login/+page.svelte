@@ -44,3 +44,74 @@
   </form>
   {/if}
 </main>
+
+<style>
+  main {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  main > button {
+    margin-bottom: 1em;
+  }
+  button {
+    background-color: transparent;
+    border: none;
+    color: inherit;
+  }
+  form {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 0.5em;
+    width: 42ch;
+    align-items: center;
+  }
+  input[type='text'],
+  input[type='password']{
+    background-color: rgba(255, 255, 255, 0.1);
+    color: inherit;
+    font-size: 1em;
+    border-radius: 1em;
+    padding: 0.3em 1em;
+    border: 0;
+    width: 20ch;
+  }
+  input[type='color'] {
+    padding: 0;
+    width: 4ch;
+    margin-left: 24%;
+  }
+  input[type='color']::-webkit-color-swatch-wrapper {
+    padding: 0;
+  }
+  input[type='color']::-webkit-color-swatch{
+    border: 5px solid inherit;
+  }
+  label {
+    width: 12ch;
+    margin-right: 1em;
+  }
+  form > button {
+    margin-left: 50%;
+    translate: -50% 0;
+  }
+@media screen and (max-width: 700px) {
+  form {
+    flex-direction: column;
+  }
+  label {
+    width: max-content;
+    margin-right: 0em;
+  }
+  input[type='color'] {
+    margin-left: 0;
+  }
+  form > button {
+    margin-left: 0%;
+    translate: 0;
+  }
+}
+</style>
