@@ -71,6 +71,11 @@
 {/if}
 
 <style>
+  :root {
+    --primaryColor: #F2F3D9;
+    --secondaryColor: #030027;
+    --errorBackground: #A53860;
+  }
   main {
     height: 100%;
     width: 100%;
@@ -88,11 +93,17 @@
   }
   }
   button {
-    background-color: transparent;
-    border: none;
-    color: inherit;
+    background-color: var(--secondaryColor);
+    color: var(--primaryColor);
+    padding: 0.3em 0.7em;
+    border: 2px solid var(--primaryColor);
     border-radius: 50vw;
     transition: 300ms;
+  }
+  button:hover,
+  button:focus{
+    --primaryColor: #030027;
+    --secondaryColor: #F2F3D9;
   }
   form {
     display: flex;
@@ -104,6 +115,11 @@
   }
   form > section {
     margin: 0.5em auto;
+  }
+  form > section > button:first-child {
+    background-color: var(--primaryColor);
+    color: var(--secondaryColor);
+    border: 2px solid var(--secondaryColor);
   }
   input[type='text'],
   input[type='password']{
