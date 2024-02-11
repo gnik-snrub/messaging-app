@@ -1,4 +1,6 @@
 <script>
+  import { sineOut } from "svelte/easing";
+  import { blur } from "svelte/transition";
   let needsToSignUp = false
 
   let loginUsername, loginPassword = null
@@ -17,31 +19,34 @@
 
 <main>
   {#if needsToSignUp}
-  <h2>Sign up</h2>
+    <section id="blur" transition:blur={{duration:300, delay: 0, easing: sineOut}}>
+      <h2>Sign up</h2>
 
   <button on:click={() => {needsToSignUp = !needsToSignUp}}>Let me log in</button>
-    
-  <form on:submit={signup}>
-    <label for="username">Username:</label>
-    <input type="text" name="username" id="username" bind:value={signupUsername}>
-    <label for="password">Password:</label>
-    <input type="password" name="password" id="password" bind:value={signupPassword}>
-    <label for="favoriteColor">Favorite Color:</label>
-    <input type="color" bind:value={favoriteColor}>
-    <button type="submit">Sign up</button>
-  </form>
+      <form on:submit|preventDefault={() => {signup()}}>
+        <label for="username">Username:</label>
+        <input type="text" name="username" id="username" bind:value={signupUsername}>
+        <label for="password">Password:</label>
+        <input type="password" name="password" id="password" bind:value={signupPassword}>
+        <label for="favoriteColor">Favorite Color:</label>
+        <input type="color" bind:value={favoriteColor}>
+          <button type="submit">Sign up</button>
+      </form>
+    </section>
   {:else}
-  <h2>Log In</h2>
 
   <button on:click={() => {needsToSignUp = !needsToSignUp}}>I need to sign up</button>
+    <section id="blur" transition:blur={{duration:300, delay: 0, easing: sineOut}}>
+      <h2>Log In</h2>
 
-  <form on:submit={login}>
-    <label for="username">Username:</label>
-    <input type="text" name="username" id="username" bind:value={loginUsername}>
-    <label for="password">Password:</label>
-    <input type="password" name="password" id="password" bind:value={loginPassword}>
-    <button type="submit">Login</button>
-  </form>
+      <form on:submit|preventDefault={() => {login()}}>
+        <label for="username">Username:</label>
+        <input type="text" name="username" id="username" bind:value={loginUsername}>
+        <label for="password">Password:</label>
+        <input type="password" name="password" id="password" bind:value={loginPassword}>
+          <button type="submit">Login</button>
+      </form>
+    </section>
   {/if}
 </main>
 
