@@ -22,7 +22,6 @@
     <section id="blur" transition:blur={{duration:300, delay: 0, easing: sineOut}}>
       <h2>Sign up</h2>
 
-  <button on:click={() => {needsToSignUp = !needsToSignUp}}>Let me log in</button>
       <form on:submit|preventDefault={() => {signup()}}>
         <label for="username">Username:</label>
         <input type="text" name="username" id="username" bind:value={signupUsername}>
@@ -30,12 +29,13 @@
         <input type="password" name="password" id="password" bind:value={signupPassword}>
         <label for="favoriteColor">Favorite Color:</label>
         <input type="color" bind:value={favoriteColor}>
+        <section>
+          <button type="button" on:click={togglePage}>Let me log in</button>
           <button type="submit">Sign up</button>
+        </section>
       </form>
     </section>
   {:else}
-
-  <button on:click={() => {needsToSignUp = !needsToSignUp}}>I need to sign up</button>
     <section id="blur" transition:blur={{duration:300, delay: 0, easing: sineOut}}>
       <h2>Log In</h2>
 
@@ -44,7 +44,10 @@
         <input type="text" name="username" id="username" bind:value={loginUsername}>
         <label for="password">Password:</label>
         <input type="password" name="password" id="password" bind:value={loginPassword}>
+        <section>
+          <button type="button" on:click={togglePage}>I need to sign up</button>
           <button type="submit">Login</button>
+        </section>
       </form>
     </section>
   {/if}
