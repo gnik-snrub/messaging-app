@@ -1,19 +1,29 @@
 <script>
   import { sineOut } from "svelte/easing";
   import { blur } from "svelte/transition";
+
+  let errors = []
+
   let needsToSignUp = false
+  const togglePage = () => {
+    needsToSignUp = !needsToSignUp
+    errors = []
+  }
 
   let loginUsername, loginPassword = null
 
   const login = async () => {
-    console.log(loginUsername, loginPassword)
+    errors = ['Invalid username or password']
   }
 
   let signupUsername, signupPassword = null
   let favoriteColor = '#A000CC'
 
   const signup = async () => {
-    console.log(signupUsername, signupPassword, favoriteColor)
+    errors = [
+      'Username taken',
+      'Password too weak'
+    ]
   }
 </script>
 
@@ -52,6 +62,13 @@
     </section>
   {/if}
 </main>
+{#if errors.length > 0}
+  <section id="errorOutput">
+    {#each errors as error}
+      <p>{error}</p>
+    {/each}
+  </section>
+{/if}
 
 <style>
   main {
