@@ -91,6 +91,22 @@
     align-items: center;
     justify-content: center;
   }
+  #errorOutput {
+    position: absolute;
+    bottom: 0;
+    animation: slideUp 500ms ease-in-out forwards;
+    background-color: var(--errorBackground);
+    width: 100%;
+    text-align: center;
+    border-radius: 100% 100% 0 0;
+  }
+  @keyframes slideUp {
+    from {
+      translate: 0 200%;
+    }
+    to {
+      translate: 0;
+    }
   }
   button {
     background-color: var(--secondaryColor);
