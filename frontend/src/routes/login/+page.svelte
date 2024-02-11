@@ -73,18 +73,26 @@
 <style>
   main {
     height: 100%;
+    width: 100%;
+  }
+  #blur {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
   }
-  main > button {
-    margin-bottom: 1em;
   }
   button {
     background-color: transparent;
     border: none;
     color: inherit;
+    border-radius: 50vw;
+    transition: 300ms;
   }
   form {
     display: flex;
@@ -93,6 +101,9 @@
     gap: 0.5em;
     width: 42ch;
     align-items: center;
+  }
+  form > section {
+    margin: 0.5em auto;
   }
   input[type='text'],
   input[type='password']{
@@ -119,24 +130,19 @@
     width: 12ch;
     margin-right: 1em;
   }
-  form > button {
-    margin-left: 50%;
-    translate: -50% 0;
+  @media screen and (max-width: 700px) {
+    * {
+      font-size: 0.9em;
+    }
+    form {
+      flex-direction: column;
+    }
+    label {
+      width: max-content;
+      margin-right: 0em;
+    }
+    input[type='color'] {
+      margin-left: 0;
+    }
   }
-@media screen and (max-width: 700px) {
-  form {
-    flex-direction: column;
-  }
-  label {
-    width: max-content;
-    margin-right: 0em;
-  }
-  input[type='color'] {
-    margin-left: 0;
-  }
-  form > button {
-    margin-left: 0%;
-    translate: 0;
-  }
-}
 </style>
