@@ -39,7 +39,7 @@
         <input type="password" name="password" id="password" bind:value={signupPassword}>
         <label for="favoriteColor">Favorite Color:</label>
         <input type="color" bind:value={favoriteColor}>
-        <section>
+        <section id="buttons">
           <button type="button" on:click={togglePage}>Let me log in</button>
           <button type="submit">Sign up</button>
         </section>
@@ -54,7 +54,7 @@
         <input type="text" name="username" id="username" bind:value={loginUsername}>
         <label for="password">Password:</label>
         <input type="password" name="password" id="password" bind:value={loginPassword}>
-        <section>
+        <section id="buttons">
           <button type="button" on:click={togglePage}>I need to sign up</button>
           <button type="submit">Login</button>
         </section>
@@ -108,6 +108,14 @@
       translate: 0;
     }
   }
+  form {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 0.5em;
+    width: 42ch;
+    align-items: center;
+  }
   button {
     background-color: var(--secondaryColor);
     color: var(--primaryColor);
@@ -121,21 +129,16 @@
     --primaryColor: #030027;
     --secondaryColor: #F2F3D9;
   }
-  form {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    gap: 0.5em;
-    width: 42ch;
-    align-items: center;
-  }
-  form > section {
+  #buttons {
     margin: 0.5em auto;
   }
-  form > section > button:first-child {
+  #buttons > button:first-child {
     background-color: var(--primaryColor);
     color: var(--secondaryColor);
     border: 2px solid var(--secondaryColor);
+  }
+  #buttons:hover > :not(:hover) {
+    opacity: 0.2;
   }
   input[type='text'],
   input[type='password']{
