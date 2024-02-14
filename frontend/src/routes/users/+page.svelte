@@ -10,6 +10,12 @@
       searchResults = []
     }
   }
+  const updateResults = async () => {
+    //TODO
+    searchResults = searchRequest.split('').map((char) => {return {name: char.repeat(3), favoriteColor: getRandomCol()}})
+  }
+
+  const addFriend = async (user) => {}
 </script>
 <h2>Add a user as a friend</h2>
 
