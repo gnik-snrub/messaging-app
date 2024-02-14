@@ -1,3 +1,16 @@
+<script>
+  let searchRequest = ''
+  let searchResults = []
+
+  $: {
+    if (searchRequest.length >= 3) {
+      searchRequest = searchRequest
+      updateResults()
+    } else {
+      searchResults = []
+    }
+  }
+</script>
 <h2>Add a user as a friend</h2>
 
 <input type="text" bind:value={searchRequest} placeholder="User">
