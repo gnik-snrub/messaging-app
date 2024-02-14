@@ -10,6 +10,16 @@
       searchResults = []
     }
   }
+
+  //For testing
+  const getRandomCol = () => {
+    const red = Math.floor(Math.random() * 256).toString(16).padStart(2, '0')
+    const green = Math.floor(Math.random() * 256).toString(16).padStart(2, '0')
+    const blue = Math.floor(Math.random() * 256).toString(16).padStart(2, '0')
+
+    return `#${red}${green}${blue}`
+  }
+
   const updateResults = async () => {
     //TODO
     searchResults = searchRequest.split('').map((char) => {return {name: char.repeat(3), favoriteColor: getRandomCol()}})
@@ -17,6 +27,7 @@
 
   const addFriend = async (user) => {}
 </script>
+
 <h2>Add a user as a friend</h2>
 
 <input type="text" bind:value={searchRequest} placeholder="User">
