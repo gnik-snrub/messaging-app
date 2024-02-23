@@ -29,6 +29,7 @@
 </script>
 
 <main>
+  <a href="/chat">Back to chat</a>
   <h2>Add a user as a friend</h2>
 
   <input type="text" bind:value={searchRequest} placeholder="Find a user..." autofocus>
