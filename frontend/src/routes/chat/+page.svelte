@@ -40,7 +40,8 @@
 
 <main style:flex-direction={userListPosition ? 'row' : 'row-reverse'}>
   <section id="userList" style:left={userListPosition ? '0' : ''} style:right={userListPosition ? '' : '0'}>
-    <button id="changePosition" on:click={swapUserPosition}>&#8596</button>
+    <button class="sidebarSpecialButton" on:click={swapUserPosition}>&#8596</button>
+    <a href="/users" class="sidebarSpecialButton">Users</a>
     {#each friendList as friend, index }
       <button id={index === activeFriendIndex ? 'activeFriend' : ''}
               on:click={() => {changeFriend(index)}}
@@ -79,13 +80,24 @@
     align-items: center;
     z-index: 2;
   }
-  #changePosition {
+  .sidebarSpecialButton {
     background-color: rgba(0, 0, 0, 0.2);
     border: none;
     color: inherit;
     outline: none;
     width: 100%;
     padding: 0.5em 0em;
+    border-bottom: 2px solid var(--primaryColor);
+    text-align: center;
+    text-decoration: none;
+    transition: 300ms;
+  }
+  .sidebarSpecialButton:hover,
+  .sidebarSpecialButton:focus {
+    background-color: var(--primaryColor);
+    color: #2C0E36;
+  }
+  a {
     margin-bottom: 0.2em;
   }
   #activeFriend {
