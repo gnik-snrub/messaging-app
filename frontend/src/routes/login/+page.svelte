@@ -71,11 +71,6 @@
 {/if}
 
 <style>
-  :root {
-    --primaryColor: #F2F3D9;
-    --secondaryColor: #030027;
-    --errorBackground: #A53860;
-  }
   main {
     height: 100%;
     width: 100%;

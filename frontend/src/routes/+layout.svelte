@@ -16,6 +16,9 @@
     flex-flow: column;
     align-items: center;
     overflow: hidden;
+    --primaryColor: #F2F3D9;
+    --secondaryColor: #030027;
+    --errorBackground: #A53860;
   }
   :global(::-webkit-scrollbar) {
     display: none;
