@@ -40,15 +40,15 @@
 
 <main style:flex-direction={userListPosition ? 'row' : 'row-reverse'}>
   <section id="userList" style:left={userListPosition ? '0' : ''} style:right={userListPosition ? '' : '0'}>
-    <button id="changePosition" class="sidebarSpecialButton" on:click={swapUserPosition}>&#8596</button>
     <a href="/users" class="sidebarSpecialButton">Users</a>
+    <button id="changePosition" class="sidebarSpecialButton" on:click={swapUserPosition}>&#8596</button>
     {#each friendList as friend, index }
       <button id={index === activeFriendIndex ? 'activeFriend' : ''}
               on:click={() => {changeFriend(index)}}
               class="friend"
               style:background-color={friend.favoriteColor}
               data-name={friend.name}>
-        {friend.name.slice(0, 1).toUpperCase()}
+            {friend.name}
       </button>
     {/each}
   </section>
@@ -79,6 +79,7 @@
     flex-direction: column;
     align-items: center;
     z-index: 2;
+    transition: 300ms;
   }
   .sidebarSpecialButton {
     background-color: rgba(0, 0, 0, 0.2);
@@ -87,6 +88,7 @@
     outline: none;
     width: 100%;
     padding: 0.5em 0em;
+    margin: 0;
     border-bottom: 2px solid var(--primaryColor);
     text-align: center;
     text-decoration: none;
@@ -104,54 +106,24 @@
     border: 1px solid #F2F3D9;
   }
   .friend {
-    border-radius: 50%;
-    width: 2em;
-    height: 2em;
+    border-radius: 50vw;
+    width: 3em;
+    height: 3em;
     background-color: rgba(255, 255, 255, 0.1);
     color: inherit;
-    font-size: 1.5em;
+    font-size: 1em;
     border: none;
     border: 1px solid transparent;
     margin: 0.2em;
+    transition: 300ms;
+    overflow: hidden;
+    white-space: nowrap;
   }
-  .friend:hover::after,
-  .friend:focus::after {
-    left: 110%;
-    translate: 0 -15%;
-    height: 1em;
-    font-size: 0.8em;
-    width: max-content;
-    content: attr(data-name);
-    position: absolute;
-    padding: 0.5em;
-    background-color: #541C44;
-    border: 2px solid #F2F3D9;
-    border-left: 0;
-    border-radius: 0 0.6em 0.6em 0;
-    opacity: 0;
-    animation: fadeIn 300ms ease-in forwards;
+  #userList:hover {
+    width: 10em;
   }
-  .friend:hover::before,
-  .friend:focus::before {
-    left: 86%;
-    height: 0.43em;
-    width: 0.43em;
-    font-size: 0.8em;
-    content: '';
-    position: absolute;
-    padding: 0.5em;
-    background-color: #541C44;
-    border: 2px solid #F2F3D9;
-    border-top: 0;
-    border-right: 0;
-    opacity: 0;
-    transform: rotate(45deg);
-    animation: fadeIn 350ms ease-in forwards;
-  }
-  @keyframes fadeIn {
-    to {
-      opacity: 1;
-    }
+  #userList:hover > .friend {
+    width: 9em;
   }
   #messages {
     overflow: auto;
@@ -225,9 +197,6 @@
     #userList {
       z-index: 0;
     }
-    #changePosition {
-      display: none;
-    }
     form > input {
       margin-left: 1em;
     }
@@ -246,6 +215,9 @@
     #messages {
       margin-right: 1em;
       margin-left: 5em
+    }
+    #changePosition {
+      display: none;
     }
   }
 </style>
