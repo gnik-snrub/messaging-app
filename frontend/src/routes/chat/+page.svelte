@@ -40,7 +40,7 @@
 
 <main style:flex-direction={userListPosition ? 'row' : 'row-reverse'}>
   <section id="userList" style:left={userListPosition ? '0' : ''} style:right={userListPosition ? '' : '0'}>
-    <button class="sidebarSpecialButton" on:click={swapUserPosition}>&#8596</button>
+    <button id="changePosition" class="sidebarSpecialButton" on:click={swapUserPosition}>&#8596</button>
     <a href="/users" class="sidebarSpecialButton">Users</a>
     {#each friendList as friend, index }
       <button id={index === activeFriendIndex ? 'activeFriend' : ''}
@@ -224,7 +224,6 @@
   @media screen and (max-width: 450px) {
     #userList {
       z-index: 0;
-      padding-top: 1em;
     }
     #changePosition {
       display: none;
@@ -237,10 +236,16 @@
     }
     #messages {
       margin-right: 1em;
-      margin-left: 6em
+      margin-left: 6em;
     }
     #messages > li {
       max-width: 65%;
+    }
+  }
+  @media screen and (max-width: 750px) {
+    #messages {
+      margin-right: 1em;
+      margin-left: 5em
     }
   }
 </style>
