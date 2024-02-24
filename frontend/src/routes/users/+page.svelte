@@ -111,4 +111,31 @@
     align-items: center;
     justify-content: center;
   }
+  @media screen and (max-width: 1300px) {
+    main {
+      width: 60%;
+    }
+  }
+  @media screen and (max-width: 700px) {
+    main {
+      width: 90%;
+    }
+  }
+  @media screen and (max-width: 500px) {
+    .userBubble {
+      color: transparent;
+      width: 0.7em;
+      height: 0.7em;
+    }
+    ol {
+      padding: 1em 1.4em;
+      justify-content: start;
+    }
+    ol > span {
+      margin-left: 1em;
+    }
+    ol > button {
+      margin-left: auto;
+    }
+  }
 </style>
