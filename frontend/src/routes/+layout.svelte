@@ -1,8 +1,27 @@
+<script>
+  import { goto } from '$app/navigation'
+  import { browser } from '$app/environment'
+
+  import Login from './login/+page.svelte'
+
+  let auth = false
+
+  $: {
+    if (!auth && browser) {
+      goto('/login')
+    }
+  }
+</script>
+
 <svelte:head>
   <title>Your-ssaging</title>
 </svelte:head>
 
-<slot />
+{#if auth}
+  <slot />
+{:else}
+  <Login />
+{/if}
 
 <style>
   :global(html, body) {
