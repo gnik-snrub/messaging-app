@@ -41,7 +41,7 @@
         {user.name.slice(0, 1).toUpperCase()}
       </div>
       <span>{user.name}</span>
-      <button on:click={addFriend}>Add friend</button>
+      <button on:click={addFriend}>+</button>
     </ol>
     {/each}
   </ul>
@@ -56,20 +56,26 @@
     padding-top: 1.7em;
     overflow: auto;
   }
-  a {
+  a, button {
     text-decoration: none;
     background-color: var(--secondaryColor);
     color: var(--primaryColor);
-    padding: 0.3em 0.7em;
     border: 2px solid var(--primaryColor);
     border-radius: 50vw;
     transition: 300ms;
     outline: none;
   }
-  a:hover,
-  a:focus{
+  a:hover, a:focus,
+  button:hover, button:focus {
     --primaryColor: #030027;
     --secondaryColor: #F2F3D9;
+  }
+  a {
+    padding: 0.3em 0.7em;
+  }
+  button {
+    padding: 1em 0.7em;
+    line-height: 0px;
   }
   input {
     background-color: rgba(255, 255, 255, 0.1);
