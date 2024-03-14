@@ -4,13 +4,14 @@
 
   import Login from './login/+page.svelte'
 
-  let auth = false
+  let auth = true
 
   $: {
     if (!auth && browser) {
       goto('/login')
     }
   }
+
 </script>
 
 <svelte:head>
