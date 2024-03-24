@@ -8,7 +8,18 @@ var logger = require('morgan');
 
 require('dotenv').config()
 
+const mongoose = require('mongoose')
+const mongoDB = process.env.MONGO_CT_URL
+
+main().catch(err => console.log(err))
+async function main() {
+  await mongoose.connect(mongoDB)
+}
+
 var app = express();
+
+const cors = require('cors')
+app.use(cors())
 
 app.use(logger('dev'));
 app.use(express.json());
