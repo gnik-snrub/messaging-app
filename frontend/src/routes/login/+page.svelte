@@ -20,10 +20,22 @@
   let favoriteColor = '#A000CC'
 
   const signup = async () => {
-    errors = [
-      'Username taken',
-      'Password too weak'
-    ]
+    if (errors.length === 0) {
+      const data = new URLSearchParams()
+      data.append('username', signupUsername)
+      data.append('password', signupPassword)
+      data.append('favoriteColor', favoriteColor)
+
+      const response = await fetch('http://localhost:3000/api/signup', {
+        method: 'POST',
+        body: data,
+      })
+
+      const result = await response.json()
+      console.log(result)
+      errors = [result.errors]
+      console.log(result.id ? `New user created with id: ${result.id}` : 'Error creating user')
+    }
   }
 </script>
 
@@ -63,7 +75,7 @@
   {/if}
 </main>
 {#if errors.length > 0}
-  <section id="errorOutput">
+  <section id="errorOutput" on:click={() => {errors = []}}>
     {#each errors as error}
       <p>{error}</p>
     {/each}
