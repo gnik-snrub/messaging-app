@@ -1,6 +1,8 @@
 <script>
   import { sineOut } from "svelte/easing";
   import { blur } from "svelte/transition";
+  import { goto } from '$app/navigation'
+  import { authToken } from '/src/stores/auth'
 
   let errors = []
 
@@ -14,6 +16,19 @@
 
   const login = async () => {
     errors = ['Invalid username or password']
+    const response = await fetch('http://localhost:3000/api/login', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({
+        username: loginUsername,
+        password: loginPassword
+      })
+    })
+    if (response.ok) {
+      const data = await response.json()
+      await authToken.set(data)
+      goto('/chat')
+    }
   }
 
   let signupUsername, signupPassword = null
