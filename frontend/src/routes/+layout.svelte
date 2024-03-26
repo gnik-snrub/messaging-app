@@ -4,10 +4,10 @@
 
   import Login from './login/+page.svelte'
 
-  let auth = true
+  import { authToken } from '/src/stores/auth'
 
   $: {
-    if (!auth && browser) {
+    if (browser && !$authToken) {
       goto('/login')
     }
   }
@@ -18,7 +18,7 @@
   <title>Your-ssaging</title>
 </svelte:head>
 
-{#if auth}
+{#if $authToken}
   <slot />
 {:else}
   <Login />
