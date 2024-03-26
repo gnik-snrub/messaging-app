@@ -1,5 +1,6 @@
 const bcrypt = require('bcryptjs')
 const User = require('../models/User')
+const jwt = require('jsonwebtoken')
 
 exports.retrieveMessages = (req, res, next) => {
   res.next()
@@ -48,6 +49,21 @@ exports.signup = async (req, res, next) => {
   }
 }
 
-exports.login = (req, res, next) => {
-  res.next()
+exports.login = async (req, res, next) => {
+  const user = await User.findOne({ username: req.body.username })
+  if (!user) {
+    res.status(403).json({ errors: ['User does not exist'] })
+  }
+
+  const match = bcrypt.compare(req.body.password, user.password)
+  if (!match) {
+    res.status(403).json({ errors: ['Incorrect password'] })
+  }
+
+  const token = jwt.sign({
+    username: user.username,
+    id: user._id
+  }, process.env.JWT_SECRET)
+
+  res.json(token)
 }
