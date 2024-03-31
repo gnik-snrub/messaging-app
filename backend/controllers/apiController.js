@@ -10,8 +10,9 @@ exports.sendMessage = (req, res, next) => {
   res.next()
 }
 
-exports.searchUsers = (req, res, next) => {
-  res.next()
+exports.searchUsers = async (req, res, next) => {
+  const foundUsers = await User.find({ username: { $regex: req.body.request}}, 'username favoriteColor')
+  res.json({ users: foundUsers })
 }
 
 exports.addFriend = (req, res, next) => {
@@ -64,6 +65,7 @@ exports.login = async (req, res, next) => {
     username: user.username,
     id: user._id
   }, process.env.JWT_SECRET)
+
 
   res.json(token)
 }
