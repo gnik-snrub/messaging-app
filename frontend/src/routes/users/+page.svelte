@@ -12,8 +12,15 @@
   }
 
   const updateResults = async () => {
-    //TODO
-    searchResults = searchRequest.split('').map((char) => {return {name: char.repeat(3), favoriteColor: getRandomCol()}})
+    const data = new URLSearchParams()
+    data.append('request', searchRequest)
+    
+    const response = await fetch('http://localhost:3000/api/searchUsers/asd', {
+      method: 'POST',
+      body: data
+    })
+    const responseData = await response.json()
+    searchResults = responseData.users
   }
 
   const addFriend = async (user) => {}
