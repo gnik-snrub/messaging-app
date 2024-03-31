@@ -33,15 +33,23 @@
   <input type="text" bind:value={searchRequest} placeholder="Find a user..." autofocus>
 
   <ul>
-    {#each searchResults as user}
-    <ol>
-      <div class="userBubble" style:background-color={user.favoriteColor}>
-        {user.name.slice(0, 1).toUpperCase()}
-      </div>
-      <span>{user.name}</span>
-      <button on:click={addFriend}>+</button>
-    </ol>
-    {/each}
+    {#if searchResults.length !== 0}
+      {#each searchResults as user}
+      <ol>
+        <div class="userBubble" style:background-color={user.favoriteColor}>
+          {user.username.slice(0, 1).toUpperCase()}
+        </div>
+        <span>{user.username}</span>
+        <button on:click={addFriend}>+</button>
+      </ol>
+      {/each}
+    {:else}
+      <ol>
+        <div></div>
+        <span>No users found</span>
+        <div></div>
+      </ol>
+    {/if}
   </ul>
 </main>
 
