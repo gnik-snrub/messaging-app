@@ -3,6 +3,7 @@
   import { blur } from "svelte/transition";
   import { goto } from '$app/navigation'
   import { authToken } from '/src/stores/auth'
+  import { userID } from '/src/stores/user'
 
   let errors = []
 
@@ -25,8 +26,9 @@
       })
     })
     if (response.ok) {
-      const data = await response.json()
-      await authToken.set(data)
+      const { id, token } = await response.json()
+      await authToken.set(token)
+      await userID.set(id)
       goto('/chat')
     }
   }
