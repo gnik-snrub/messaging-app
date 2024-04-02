@@ -1,13 +1,20 @@
 <script>
+  import {onMount} from 'svelte';
+  import { userID } from '/src/stores/user'
+
   let messages = []
-  const friendList = [{name: 'john', favoriteColor: '#f00'},
-    {name: 'jim', favoriteColor: '#b04'},
-    {name: 'joe', favoriteColor: '#90b'},
-    {name: 'jose', favoriteColor: '#50b'},
-    {name: 'julian the jreat', favoriteColor: '#20c'},
-    {name: 'joseph', favoriteColor: '#00f'}
-  ]
+  let friendList = []
   let activeFriendIndex = 0
+
+  const fetchFriendsList = async () => {
+    const response = await fetch('http://localhost:3000/api/findFriends/' + $userID)
+    return response.json()
+  }
+
+  onMount(async () => {
+    const data = await fetchFriendsList()
+    friendList = data
+  })
 
   $: if (activeFriendIndex !== undefined) fetchMessages()
 
@@ -46,9 +53,8 @@
       <button id={index === activeFriendIndex ? 'activeFriend' : ''}
               on:click={() => {changeFriend(index)}}
               class="friend"
-              style:background-color={friend.favoriteColor}
-              data-name={friend.name}>
-            {friend.name}
+              style:background-color={friend.favoriteColor}>
+            {friend.username}
       </button>
     {/each}
   </section>
