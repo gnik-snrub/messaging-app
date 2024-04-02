@@ -23,7 +23,14 @@
     searchResults = responseData.users
   }
 
-  const addFriend = async (user) => {}
+  const addFriend = async (user) => {
+    const data = new URLSearchParams()
+    data.append('newFriend', user)
+    await fetch('http://localhost:3000/api/addFriend', {
+      method: 'POST',
+      body: data
+    })
+  }
 </script>
 
 <main>
@@ -40,7 +47,7 @@
           {user.username.slice(0, 1).toUpperCase()}
         </div>
         <span>{user.username}</span>
-        <button on:click={addFriend}>+</button>
+        <button on:click={() => {addFriend(user._id)}}>+</button>
       </ol>
       {/each}
     {:else}
