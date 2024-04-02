@@ -71,5 +71,5 @@ exports.login = async (req, res, next) => {
   }, process.env.JWT_SECRET)
 
 
-  res.json(token)
+  res.json({ id: user._id, token: token})
 }
