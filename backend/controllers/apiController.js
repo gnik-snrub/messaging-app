@@ -2,6 +2,12 @@ const bcrypt = require('bcryptjs')
 const User = require('../models/User')
 const jwt = require('jsonwebtoken')
 
+exports.findFriends = async (req, res, next) => {
+  const user = await User.find({ _id: req.params.id }, 'friends')
+  const friends = await User.find({ _id: { $in: user[0].friends } }, 'username favoriteColor')
+  res.json(friends)
+}
+
 exports.retrieveMessages = (req, res, next) => {
   res.next()
 }
