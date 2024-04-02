@@ -15,8 +15,12 @@ exports.searchUsers = async (req, res, next) => {
   res.json({ users: foundUsers })
 }
 
-exports.addFriend = (req, res, next) => {
-  res.next()
+exports.addFriend = async (req, res, next) => {
+  const { newFriend } = req.body
+  const currentUser = await User.find({ user: req.params.friendID })
+  currentUser[0].friends.push(newFriend)
+  await currentUser[0].save()
+  res.json({ success: true })
 }
 
 exports.signup = async (req, res, next) => {
