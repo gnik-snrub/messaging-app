@@ -39,9 +39,17 @@
 
   const sendMessage = async () => {
     if (newMessage) {
-      messages = [...messages, {direction: 'sent', message: newMessage, timeStamp: new Date()}].sort((a, b) => b.timeStamp - a.timeStamp)
+      const data = new URLSearchParams()
+      data.append('message', newMessage)
+      data.append('sender', $userID)
+      data.append('receiver', friendList[activeFriendIndex]._id)
+      await fetch('http://localhost:3000/api/sendMessage', {
+        method: 'POST',
+        body: data
+      })
     }
     newMessage = ''
+    await fetchMessages()
   }
 </script>
 

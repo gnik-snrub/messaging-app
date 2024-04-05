@@ -1,5 +1,6 @@
 const bcrypt = require('bcryptjs')
 const User = require('../models/User')
+const Message = require('../models/Message')
 const jwt = require('jsonwebtoken')
 
 exports.findFriends = async (req, res, next) => {
