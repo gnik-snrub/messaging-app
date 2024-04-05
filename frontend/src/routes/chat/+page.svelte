@@ -11,20 +11,20 @@
     return response.json()
   }
 
-  onMount(async () => {
-    const data = await fetchFriendsList()
-    friendList = data
-  })
+  const fetchMessages = async () => {
+    const data = new URLSearchParams()
+    data.append('sender', $userID)
+    data.append('receiver', friendList[activeFriendIndex]._id)
+    const response = await fetch('http://localhost:3000/api/retrieveMessages', {
+      method: 'POST',
+      body: data
+    })
+    const messageData = await response.json()
+    messages = [...messageData.messages]
+    messages = messages.reverse()
+  }
 
   $: if (activeFriendIndex !== undefined) fetchMessages()
-
-  const fetchMessages = async () => {
-    /*
-    const response = await fetch()
-    const data = await response.json()
-    messages = data.messages
-    */
-  }
 
   const changeFriend = async (newFriend) => {
     activeFriendIndex = newFriend
@@ -51,6 +51,12 @@
     newMessage = ''
     await fetchMessages()
   }
+
+  onMount(async () => {
+    const data = await fetchFriendsList()
+    friendList = data
+    await fetchMessages()
+  })
 </script>
 
 <main style:flex-direction={userListPosition ? 'row' : 'row-reverse'}>
