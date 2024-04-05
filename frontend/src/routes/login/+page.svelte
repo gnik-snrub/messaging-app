@@ -13,7 +13,7 @@
     errors = []
   }
 
-  let loginUsername, loginPassword = null
+  let loginUsername, loginPassword = ''
 
   const login = async () => {
     errors = ['Invalid username or password']
