@@ -9,8 +9,10 @@ exports.findFriends = async (req, res, next) => {
   res.json(friends)
 }
 
-exports.retrieveMessages = (req, res, next) => {
-  res.next()
+exports.retrieveMessages = async (req, res, next) => {
+  const { sender, receiver } = req.body
+  const messages = await Message.find({ sender: sender, receiver: receiver } || { sender: receiver, receiver: sender })
+  res.json({ messages: messages })
 }
 
 exports.sendMessage = async (req, res, next) => {
