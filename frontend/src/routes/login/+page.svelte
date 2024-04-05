@@ -33,7 +33,7 @@
     }
   }
 
-  let signupUsername, signupPassword = null
+  let signupUsername, signupPassword = ''
   let favoriteColor = '#A000CC'
 
   const signup = async () => {
