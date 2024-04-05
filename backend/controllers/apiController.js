@@ -12,8 +12,16 @@ exports.retrieveMessages = (req, res, next) => {
   res.next()
 }
 
-exports.sendMessage = (req, res, next) => {
-  res.next()
+exports.sendMessage = async (req, res, next) => {
+  const { message, sender, receiver } = req.body
+  const newMessage = new Message({
+    message,
+    sender,
+    receiver,
+    timestamp: Date.now()
+  })
+  await newMessage.save()
+  res.json({ success: true })
 }
 
 exports.searchUsers = async (req, res, next) => {
