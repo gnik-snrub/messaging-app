@@ -5,8 +5,8 @@ const router = express.Router()
 
 router.get('/findFriends/:id', apiController.findFriends)
 
-router.get('/retrieveMessages', apiController.retrieveMessages)
-router.post('/send/:messageID', apiController.sendMessage)
+router.post('/retrieveMessages', apiController.retrieveMessages)
+router.post('/sendMessage', apiController.sendMessage)
 
 router.post('/searchUsers/:searchQuery', apiController.searchUsers)
 router.post('/addFriend', apiController.addFriend)
