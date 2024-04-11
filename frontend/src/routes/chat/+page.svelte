@@ -77,7 +77,7 @@
             {friend.username}
       </button>
     {/each}
-    <button class="sidebarSpecialButton" on:click={logout}>Logout</button>
+    <button id="logout" class="sidebarSpecialButton" on:click={logout}>Logout</button>
   </section>
   <ul id="messages">
     {#each messages as message}
@@ -125,6 +125,9 @@
   .sidebarSpecialButton:focus {
     background-color: var(--primaryColor);
     color: #2C0E36;
+  }
+  #logout {
+    margin-top: auto;
   }
   a {
     margin-bottom: 0.2em;
