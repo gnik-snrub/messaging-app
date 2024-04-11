@@ -11,8 +11,9 @@ exports.findFriends = async (req, res, next) => {
 
 exports.retrieveMessages = async (req, res, next) => {
   const { sender, receiver } = req.body
-  const messages = await Message.find({ sender: sender, receiver: receiver } || { sender: receiver, receiver: sender })
-  res.json({ messages: messages })
+  const outgoing = await Message.find({ sender: sender, receiver: receiver })
+  const incoming = await Message.find({ sender: receiver, receiver: sender })
+  res.json({ messages: [...outgoing, ...incoming].sort((a, b) => a.timestamp - b.timestamp).reverse() })
 }
 
 exports.sendMessage = async (req, res, next) => {
@@ -36,7 +37,6 @@ exports.addFriend = async (req, res, next) => {
   const { newF, curr } = req.body
   const newFriend = await User.findOne({ _id: newF })
   const currentUser = await User.findOne({ _id: curr })
-  console.log("users: ", newFriend._id, currentUser._id)
   if (currentUser.friends.includes(newFriend._id) || newFriend.friends.includes(currentUser._id) || newFriend._id === currentUser._id) {
     res.json({ success: false })
   } else {

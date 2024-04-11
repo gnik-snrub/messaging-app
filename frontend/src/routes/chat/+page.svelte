@@ -22,7 +22,6 @@
     })
     const messageData = await response.json()
     messages = [...messageData.messages]
-    messages = messages.reverse()
   }
 
   $: if (activeFriendIndex !== undefined) fetchMessages()
@@ -81,7 +80,7 @@
   </section>
   <ul id="messages">
     {#each messages as message}
-      <li class={message.direction === 'sent' ? 'right' : 'left'}>{message.message}</li>
+      <li class={message.sender === $userID ? 'right' : 'left'}>{message.message}</li>
     {/each}
   </ul>
   <form on:submit|preventDefault={sendMessage}>
