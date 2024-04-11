@@ -33,13 +33,17 @@ exports.searchUsers = async (req, res, next) => {
 }
 
 exports.addFriend = async (req, res, next) => {
-  const { newFriend } = req.body
-  const currentUser = await User.find({ user: req.params.friendID })
-  if (currentUser[0].friends.includes(newFriend) || newFriend === currentUser[0]._id) {
+  const { newF, curr } = req.body
+  const newFriend = await User.findOne({ _id: newF })
+  const currentUser = await User.findOne({ _id: curr })
+  console.log("users: ", newFriend._id, currentUser._id)
+  if (currentUser.friends.includes(newFriend._id) || newFriend.friends.includes(currentUser._id) || newFriend._id === currentUser._id) {
     res.json({ success: false })
   } else {
-    currentUser[0].friends.push(newFriend)
-    await currentUser[0].save()
+    currentUser.friends.push(newFriend._id)
+    newFriend.friends.push(currentUser._id)
+    await currentUser.save()
+    await newFriend.save()
     res.json({ success: true })
   }
 }

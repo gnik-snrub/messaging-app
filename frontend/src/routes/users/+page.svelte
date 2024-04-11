@@ -1,4 +1,6 @@
 <script>
+  import { userID } from '/src/stores/user'
+
   let searchRequest = ''
   let searchResults = []
 
@@ -23,9 +25,10 @@
     searchResults = responseData.users
   }
 
-  const addFriend = async (user) => {
+  const addFriend = async (newFriend) => {
     const data = new URLSearchParams()
-    data.append('newFriend', user)
+    data.append('newF', newFriend)
+    data.append('curr', $userID)
     await fetch('http://localhost:3000/api/addFriend', {
       method: 'POST',
       body: data
