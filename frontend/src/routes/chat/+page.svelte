@@ -1,6 +1,7 @@
 <script>
   import {onMount} from 'svelte';
   import { userID } from '/src/stores/user'
+  import { authToken } from '/src/stores/auth'
 
   let messages = []
   let friendList = []
@@ -57,6 +58,11 @@
     friendList = data
     await fetchMessages()
   })
+
+  const logout = async () => {
+    await userID.set('')
+    await authToken.set('')
+  }
 </script>
 
 <main style:flex-direction={userListPosition ? 'row' : 'row-reverse'}>
@@ -71,6 +77,7 @@
             {friend.username}
       </button>
     {/each}
+    <button class="sidebarSpecialButton" on:click={logout}>Logout</button>
   </section>
   <ul id="messages">
     {#each messages as message}
