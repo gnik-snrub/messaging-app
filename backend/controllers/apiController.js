@@ -37,7 +37,10 @@ exports.addFriend = async (req, res, next) => {
   const { newF, curr } = req.body
   const newFriend = await User.findOne({ _id: newF })
   const currentUser = await User.findOne({ _id: curr })
-  if (currentUser.friends.includes(newFriend._id) || newFriend.friends.includes(currentUser._id) || newFriend._id === currentUser._id) {
+  // Check to see if they are already friends, or if they are trying to add themselves as a friend
+  if (currentUser.friends.includes(newFriend._id)
+    || newFriend.friends.includes(currentUser._id)
+    || newFriend.id === currentUser.id) {
     res.json({ success: false })
   } else {
     currentUser.friends.push(newFriend._id)
