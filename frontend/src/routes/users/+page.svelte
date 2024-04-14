@@ -1,5 +1,6 @@
 <script>
   import { userID } from '/src/stores/user'
+  import { isLightBackground } from '/src/lib/luminance'
 
   let searchRequest = ''
   let searchResults = []
@@ -46,7 +47,7 @@
     {#if searchResults.length !== 0}
       {#each searchResults as user}
       <ol>
-        <div class="userBubble" style:background-color={user.favoriteColor}>
+        <div class="userBubble" style:background-color={user.favoriteColor} style:color={isLightBackground(user.favoriteColor) ? 'black' : 'white'}>
           {user.username.slice(0, 1).toUpperCase()}
         </div>
         <span>{user.username}</span>
