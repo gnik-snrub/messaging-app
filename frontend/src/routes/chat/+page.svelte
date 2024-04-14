@@ -66,18 +66,20 @@
 </script>
 
 <main style:flex-direction={userListPosition ? 'row' : 'row-reverse'}>
-  <section id="userList" style:left={userListPosition ? '0' : ''} style:right={userListPosition ? '' : '0'}>
+  <section id="sidebar" style:left={userListPosition ? '0' : ''} style:right={userListPosition ? '' : '0'}>
     <a href="/users" class="sidebarSpecialButton">Users</a>
     <button id="changePosition" class="sidebarSpecialButton" on:click={swapUserPosition}>&#8596</button>
-    {#each friendList as friend, index }
-      <button id={index === activeFriendIndex ? 'activeFriend' : ''}
-              on:click={() => {changeFriend(index)}}
-              class="friend"
-              style:color={isLightBackground(friend.favoriteColor) ? 'black' : 'white'}
-              style:background-color={friend.favoriteColor}>
-            {friend.username}
-      </button>
-    {/each}
+    <section id="friendsList">
+      {#each friendList as friend, index }
+        <button id={index === activeFriendIndex ? 'activeFriend' : ''}
+                on:click={() => {changeFriend(index)}}
+                class="friend"
+                style:color={isLightBackground(friend.favoriteColor) ? 'black' : 'white'}
+                style:background-color={friend.favoriteColor}>
+              {friend.username}
+        </button>
+      {/each}
+    </section>
     <button id="logout" class="sidebarSpecialButton" on:click={logout}>Logout</button>
   </section>
   <ul id="messages">
@@ -98,7 +100,7 @@
     display: flex;
     justify-content: center;
   }
-  #userList {
+  #sidebar {
     position: fixed;
     height: 100%;
     width: 4em;
@@ -129,9 +131,19 @@
   }
   #logout {
     margin-top: auto;
+    border-top: 2px solid var(--primaryColor);
+    border-bottom: none;
   }
   a {
     margin-bottom: 0.2em;
+  }
+  #friendsList {
+    overflow: auto;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
   #activeFriend {
     border: 1px solid #F2F3D9;
@@ -139,7 +151,7 @@
   .friend {
     border-radius: 50vw;
     width: 3em;
-    height: 3em;
+    min-height: 3em;
     background-color: rgba(255, 255, 255, 0.1);
     color: inherit;
     font-size: 1em;
@@ -150,10 +162,10 @@
     overflow: hidden;
     white-space: nowrap;
   }
-  #userList:hover {
+  #sidebar:hover {
     width: 10em;
   }
-  #userList:hover > .friend {
+  #sidebar:hover .friend {
     width: 9em;
   }
   #messages {
