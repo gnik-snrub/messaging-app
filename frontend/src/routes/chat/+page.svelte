@@ -2,6 +2,7 @@
   import {onMount} from 'svelte';
   import { userID } from '/src/stores/user'
   import { authToken } from '/src/stores/auth'
+  import { isLightBackground } from '/src/lib/luminance'
 
   let messages = []
   let friendList = []
@@ -72,6 +73,7 @@
       <button id={index === activeFriendIndex ? 'activeFriend' : ''}
               on:click={() => {changeFriend(index)}}
               class="friend"
+              style:color={isLightBackground(friend.favoriteColor) ? 'black' : 'white'}
               style:background-color={friend.favoriteColor}>
             {friend.username}
       </button>
