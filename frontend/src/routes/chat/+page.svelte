@@ -13,10 +13,10 @@
     return response.json()
   }
 
-  const fetchMessages = async () => {
+  const fetchMessages = async (friendIndex = activeFriendIndex) => {
     const data = new URLSearchParams()
     data.append('sender', $userID)
-    data.append('receiver', friendList[activeFriendIndex]._id)
+    data.append('receiver', friendList[friendIndex]._id)
     const response = await fetch('http://localhost:3000/api/retrieveMessages', {
       method: 'POST',
       body: data
@@ -25,9 +25,8 @@
     messages = [...messageData.messages]
   }
 
-  $: if (activeFriendIndex !== undefined) fetchMessages()
-
   const changeFriend = async (newFriend) => {
+    fetchMessages(newFriend)
     activeFriendIndex = newFriend
   }
 
@@ -63,6 +62,7 @@
     await userID.set('')
     await authToken.set('')
   }
+
 </script>
 
 <main style:flex-direction={userListPosition ? 'row' : 'row-reverse'}>
