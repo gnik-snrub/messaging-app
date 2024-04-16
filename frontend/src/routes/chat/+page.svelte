@@ -41,6 +41,10 @@
   onMount(() => {
     socket = io.connect('http://localhost:3000')
 
+    socket.on('chat message', (message) => {
+      console.log('Received: ', message)
+    })
+
     return () => {
       socket.disconnect()
     }
@@ -49,6 +53,7 @@
   let newMessage = ''
 
   const sendMessage = async () => {
+    /*
     if (newMessage) {
       const data = new URLSearchParams()
       data.append('message', newMessage)
@@ -60,6 +65,9 @@
       })
     }
     newMessage = ''
+    await fetchMessages()
+    */
+    socket.emit('chat message', {message: newMessage, sender: $userID, receiver: friendList[activeFriendIndex]._id})
     await fetchMessages()
   }
 
