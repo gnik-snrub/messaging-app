@@ -147,8 +147,9 @@
   @media screen and (max-width: 500px) {
     .userBubble {
       color: transparent;
-      width: 0.7em;
-      height: 0.7em;
+      width: 1.3em;
+      height: 1.3em;
+      font-size: 1em;
     }
     ol {
       padding: 1em 1.4em;

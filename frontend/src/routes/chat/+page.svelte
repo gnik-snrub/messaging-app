@@ -144,6 +144,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding: 0.5em 0;
   }
   #activeFriend {
     border: 1px solid #F2F3D9;
@@ -240,18 +241,16 @@
     #userList {
       z-index: 0;
     }
+    #sidebar {
+      top: 0;
+      height: calc(100% - 3em - 1.5em - 1px);
+    }
     form > input {
       margin-left: 1em;
-    }
-    form > button {
-      margin-right: 1em;
     }
     #messages {
       margin-right: 1em;
       margin-left: 6em;
-    }
-    #messages > li {
-      max-width: 65%;
     }
   }
   @media screen and (max-width: 750px) {
@@ -261,6 +260,12 @@
     }
     #changePosition {
       display: none;
+    }
+    #messages > li {
+      max-width: 65%;
+    }
+    form > button {
+      margin-right: 1em;
     }
   }
 </style>
