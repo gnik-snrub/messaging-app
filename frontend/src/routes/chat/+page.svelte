@@ -1,9 +1,19 @@
 <script>
-  import io from 'socket.io-client'
-  import { onMount } from 'svelte';
   import { userID } from '/src/stores/user'
   import { authToken } from '/src/stores/auth'
   import { isLightBackground } from '/src/lib/luminance'
+  import { io } from 'socket.io-client'
+  import { onDestroy, onMount } from 'svelte';
+
+  const socket = io('ws://localhost:3000')
+
+  onMount(() => {
+    socket.connect()
+  })
+
+  onDestroy(() => {
+    socket.disconnect()
+  })
 
   let messages = []
   let friendList = []
@@ -36,38 +46,11 @@
     userListPosition = !userListPosition
   }
 
-  let socket
-
-  onMount(() => {
-    socket = io.connect('http://localhost:3000')
-
-    socket.on('chat message', (message) => {
-      console.log('Received: ', message)
-    })
-
-    return () => {
-      socket.disconnect()
-    }
-  })
-
   let newMessage = ''
 
   const sendMessage = async () => {
-    /*
-    if (newMessage) {
-      const data = new URLSearchParams()
-      data.append('message', newMessage)
-      data.append('sender', $userID)
-      data.append('receiver', friendList[activeFriendIndex]._id)
-      await fetch('http://localhost:3000/api/sendMessage', {
-        method: 'POST',
-        body: data
-      })
-    }
-    newMessage = ''
-    await fetchMessages()
-    */
     socket.emit('chat message', {message: newMessage, sender: $userID, receiver: friendList[activeFriendIndex]._id})
+    newMessage = ''
     await fetchMessages()
   }
 

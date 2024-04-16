@@ -1,4 +1,5 @@
 const apiRouter = require('./routes/api');
+const chatHandler = require('./sockets/chat');
 
 var createError = require('http-errors');
 var express = require('express');
@@ -22,7 +23,6 @@ const cors = require('cors')
 app.use(cors())
 
 const { Server } = require('socket.io')
-const chatRouter = require('./sockets/chat')
 
 const server = require('http').createServer(app)
 const io = new Server(server, {
@@ -31,7 +31,7 @@ const io = new Server(server, {
     methods: ['GET', 'POST']
   }
 })
-io.on('connection', () => chatRouter(io))
+chatHandler(io)
 
 app.use(logger('dev'));
 app.use(express.json());

@@ -1,13 +1,18 @@
+const Message = require('../models/Message')
+
 const chatHandler = (io) => {
   io.on('connection', (socket) => {
-    console.log('A user has connected')
-
     socket.on('chat message', async (data) => {
-      io.emit('chat message', message)
-    })
+      const {message, sender, receiver} = data
+      const newMessage = new Message({
+        message,
+        sender,
+        receiver,
+        timestamp: Date.now()
+      })
+      await newMessage.save()
 
-    socket.on('disconnect', () => {
-      console.log('User disconnected')
+      io.emit('chat message', data)
     })
   })
 }
