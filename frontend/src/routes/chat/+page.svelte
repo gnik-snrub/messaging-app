@@ -1,5 +1,6 @@
 <script>
-  import {onMount} from 'svelte';
+  import io from 'socket.io-client'
+  import { onMount } from 'svelte';
   import { userID } from '/src/stores/user'
   import { authToken } from '/src/stores/auth'
   import { isLightBackground } from '/src/lib/luminance'
@@ -34,6 +35,16 @@
   const swapUserPosition = () => {
     userListPosition = !userListPosition
   }
+
+  let socket
+
+  onMount(() => {
+    socket = io.connect('http://localhost:3000')
+
+    return () => {
+      socket.disconnect()
+    }
+  })
 
   let newMessage = ''
 
