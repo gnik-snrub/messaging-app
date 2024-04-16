@@ -21,6 +21,18 @@ var app = express();
 const cors = require('cors')
 app.use(cors())
 
+const { Server } = require('socket.io')
+const chatRouter = require('./sockets/chat')
+
+const server = require('http').createServer(app)
+const io = new Server(server, {
+  cors: {
+    origin: 'http://localhost:5173',
+    methods: ['GET', 'POST']
+  }
+})
+io.on('connection', () => chatRouter(io))
+
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -29,6 +41,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/api', apiRouter)
 
-app.listen(process.env.PORT, () => {console.log(`Listening on port ${process.env.PORT}`)})
+server.listen(process.env.PORT, () => {console.log(`Listening on port ${process.env.PORT}`)})
 
 module.exports = app;
