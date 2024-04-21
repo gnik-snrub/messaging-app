@@ -5,7 +5,7 @@
   import { io } from 'socket.io-client'
   import { onDestroy, onMount } from 'svelte';
 
-  const socket = io('ws://localhost:3000')
+  const socket = io('ws://localhost:3000', { query: { user: $userID, friend: '' }})
 
   onMount(() => {
     socket.connect()
@@ -37,6 +37,7 @@
   }
 
   const changeFriend = async (newFriend) => {
+    socket.emit('change friend', {newFriend: friendList[newFriend]._id})
     fetchMessages(newFriend)
     activeFriendIndex = newFriend
   }
@@ -49,15 +50,22 @@
   let newMessage = ''
 
   const sendMessage = async () => {
-    socket.emit('chat message', {message: newMessage, sender: $userID, receiver: friendList[activeFriendIndex]._id})
+    socket.emit('send message', {message: newMessage, sender: $userID, receiver: friendList[activeFriendIndex]._id})
     newMessage = ''
     await fetchMessages()
   }
 
+  socket.on('new message', (data) => {
+    const message = data
+    messages.push(message)
+  })
+
   onMount(async () => {
     const data = await fetchFriendsList()
     friendList = data
-    await fetchMessages()
+    if (friendList.length > 0) {
+      await fetchMessages()
+    }
   })
 
   const logout = async () => {
