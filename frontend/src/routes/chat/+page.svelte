@@ -9,7 +9,7 @@
   let activeFriendIndex = 0
 
   const fetchFriendsList = async () => {
-    const response = await fetch('http://localhost:3000/api/findFriends/' + $userID)
+    const response = await fetch(`${import.meta.env.VITE_API_URL}/api/findFriends/` + $userID)
     return response.json()
   }
 
@@ -17,7 +17,7 @@
     const data = new URLSearchParams()
     data.append('sender', $userID)
     data.append('receiver', friendList[friendIndex]._id)
-    const response = await fetch('http://localhost:3000/api/retrieveMessages', {
+    const response = await fetch(`${import.meta.env.VITE_API_URL}/api/retrieveMessages`, {
       method: 'POST',
       body: data
     })
@@ -43,7 +43,7 @@
       data.append('message', newMessage)
       data.append('sender', $userID)
       data.append('receiver', friendList[activeFriendIndex]._id)
-      await fetch('http://localhost:3000/api/sendMessage', {
+      await fetch(`${import.meta.env.VITE_API_URL}/api/sendMessage`, {
         method: 'POST',
         body: data
       })

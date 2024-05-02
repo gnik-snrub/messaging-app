@@ -18,7 +18,7 @@
     const data = new URLSearchParams()
     data.append('request', searchRequest)
     
-    const response = await fetch('http://localhost:3000/api/searchUsers/asd', {
+    const response = await fetch(`${import.meta.env.VITE_API_URL}/api/searchUsers/asd`, {
       method: 'POST',
       body: data
     })
@@ -30,7 +30,7 @@
     const data = new URLSearchParams()
     data.append('newF', newFriend)
     data.append('curr', $userID)
-    await fetch('http://localhost:3000/api/addFriend', {
+    await fetch(`${import.meta.env.VITE_API_URL}/api/addFriend`, {
       method: 'POST',
       body: data
     })
